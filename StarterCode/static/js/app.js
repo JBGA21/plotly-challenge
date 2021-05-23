@@ -10,18 +10,13 @@ function buildMetadata(sample) {
             panel.append("h6").text(`${key}: ${value}`);
         });
 
-        //buildGauge(result.wfreq)
-
-
-
     });
 }
 
-//function buildGauge(wfreq) {}
 
 function buildCharts(sample) {
 
-    // Use `d3.json` to fetch the sample data for the plots
+
     d3.json("samples.json").then((data) => {
         var samples = data.samples;
         var resultsarray = samples.filter(sampleobject =>
@@ -32,12 +27,8 @@ function buildCharts(sample) {
         var labels = result.otu_labels;
         var values = result.sample_values;
 
-        //------------------------------------------------------//
-        //------------------------------------------------------//
-        // Build a BUBBLE Chart 
-        //------------------------------------------------------//
-        //------------------------------------------------------//
 
+        // Bubble chart init
         var LayoutBubble = {
             margin: { t: 0 },
             xaxis: { title: "OTU ID" },
@@ -60,11 +51,7 @@ function buildCharts(sample) {
         Plotly.newPlot("bubble", DataBubble, LayoutBubble);
 
 
-        //---------------------------------------------------------//
-        //---------------------------------------------------------//
-        //  Build a BAR Chart
-        //---------------------------------------------------------//  
-        //---------------------------------------------------------// 
+        // Bar chart init
         var bar_data = [
             {
                 y: ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
@@ -87,10 +74,10 @@ function buildCharts(sample) {
 
 
 function init() {
-    // Grab a reference to the dropdown select element
+    // get the option of the dropdown
     var selector = d3.select("#selDataset");
 
-    // Use the list of sample names to populate the select options
+
     d3.json("samples.json").then((data) => {
         var sampleNames = data.names;
         sampleNames.forEach((sample) => {
@@ -100,7 +87,7 @@ function init() {
                 .property("value", sample);
         });
 
-        // Use the first sample from the list to build the initial plots
+
         const firstSample = sampleNames[0];
         buildCharts(firstSample);
         buildMetadata(firstSample);
@@ -108,12 +95,11 @@ function init() {
 }
 
 function optionChanged(newSample) {
-    // Fetch new data each time a new sample is selected
     buildCharts(newSample);
     buildMetadata(newSample);
 }
 
 
 
-// Initialize the dashboard
+// Init the dashboard function
 init();
