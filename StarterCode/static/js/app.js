@@ -76,7 +76,7 @@ function init() {
 }
 
 function changed(newSample) {
-
+    buildCharts(newSample)
 }
 
 // Init the dashboard
