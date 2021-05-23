@@ -75,5 +75,9 @@ function init() {
     });
 }
 
-// Initialize the dashboard
+function changed(newSample) {
+
+}
+
+// Init the dashboard
 init();
