@@ -74,3 +74,6 @@ function init() {
         buildMetadata(firstSample);
     });
 }
+
+// Initialize the dashboard
+init();
