@@ -23,5 +23,24 @@ function buildCharts(sample) {
         let ids = result.otu_ids;
         let labels = result.otu_labels;
         let values = result.sample_values;
+
+        // Create chart
+        let layoutB = {
+            margin: { t: 0 },
+            xaxis: { title: "OTU ID" },
+            hovermode: "closest"
+        };
+
+        let dataB = [{
+            x: ids,
+            y: values,
+            text: labels,
+            mode: "markers",
+            marker: {
+                color: ids,
+                size: values
+            }
+        }];
+        Plotly.newPlot("bubble", dataB, layoutB);
     })
 }
