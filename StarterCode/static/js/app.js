@@ -61,3 +61,6 @@ function buildCharts(sample) {
     });
 }
 
+function init() {
+
+}
