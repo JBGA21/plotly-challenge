@@ -1,5 +1,5 @@
 // create function to get the data
-function getData(id) {
+function getData(sample) {
     // Reade JSON
     d3.json("data/samples.json").then((data) => {
         let metadata = data.metadata;
@@ -14,3 +14,14 @@ function getData(id) {
     });
 }
 
+function buildCharts(sample) {
+    d3.json("data/samples.json").then((data) => {
+        let samples = data.samples;
+        let resultsarray = samples.filter(sampleobject =>
+            sampleobject.id == sample);
+        let result = resultsarray[0]
+        let ids = result.otu_ids;
+        let labels = result.otu_labels;
+        let values = result.sample_values;
+    })
+}
