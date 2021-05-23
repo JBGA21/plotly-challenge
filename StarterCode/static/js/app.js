@@ -66,5 +66,11 @@ function init() {
 
     d3.json("data/samples.json").then((data) => {
         let sampleNames = data.names;
+        sampleNames.forEach((sample) => {
+            select.append("option").text(sample).property("value", sample);
+        });
+
+
+
     });
 }
