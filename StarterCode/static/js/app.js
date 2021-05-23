@@ -62,5 +62,9 @@ function buildCharts(sample) {
 }
 
 function init() {
+    let select = d3.select("#selDataset");
 
+    d3.json("data/samples.json").then((data) => {
+        let sampleNames = data.names;
+    });
 }
