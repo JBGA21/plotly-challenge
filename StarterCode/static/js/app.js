@@ -69,8 +69,8 @@ function init() {
         sampleNames.forEach((sample) => {
             select.append("option").text(sample).property("value", sample);
         });
-
-
-
+        const firstSample = sampleNames[0];
+        buildCharts(firstSample);
+        buildMetadata(firstSample);
     });
 }
